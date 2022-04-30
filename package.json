@@ -26,12 +26,6 @@
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx ./src",
     "lint:fix": "yarn lint:js --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "lint-staged": {
     "gitDir": "../",
     "**/*.{less,md,json}": [
@@ -86,11 +80,11 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
-    "husky": "^4.3.5",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
     "lint-staged": "^10.5.3",
     "mini-css-extract-plugin": "^1.3.2",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "postcss": "^8.2.0",
     "postcss-loader": "^4.1.0",
     "prettier": "^2.2.1",

@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const os = require('os');
 const HappyPack = require('happypack');
@@ -9,7 +8,6 @@ const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 const srcDir = path.join(__dirname, '../src');
-const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
@@ -41,16 +39,24 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'less-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnable: true,
+              }
+            }
+          }
+          
         ],
       },
       {
         test: /\.css$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
         ],
@@ -84,13 +90,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: `${srcDir}/index.html`,
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: `${srcDir}/assets/images/nowthen.jpg`,
-          to: 'nowthen.jpg',
-        },
-      ],
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: `${srcDir}/assets/images/nowthen.jpg`,
+    //       to: 'nowthen.jpg',
+    //     },
+    //   ],
+    // }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: 'chunk/[id].[contenthash:8].css',
     }),
     new AntdDayjsWebpackPlugin()
   ],
