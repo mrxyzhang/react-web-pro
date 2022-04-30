@@ -31,7 +31,7 @@ module.exports = {
     'react/jsx-filename-extension': [
       1,
       {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.json', '.less', '.css'],
       },
     ],
     'jsx-a11y/no-static-element-interactions': 0,

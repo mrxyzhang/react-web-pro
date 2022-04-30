@@ -1,4 +1,5 @@
-import React, { lazy } from 'react';
+import React from 'react';
+// import React, { lazy } from 'react';
 import {
   HomeOutlined,
   SettingFilled,
@@ -12,6 +13,16 @@ import {
 
 import BasicLayout from '@/layouts/BasicLayout';
 import BlankLayout from '@/layouts/BlankLayout';
+import LoginComponent from '@/pages/Login';
+import WelcomeComponent from '@/pages/Welcome';
+import HomeComponent from '@/pages/Home';
+import FormDemoComponent from '@/pages/FormDemo';
+import GroovySetComponent from '@/pages/System/GroovySet';
+import UserComponent from '@/pages/System/User';
+import StarComponent from '@/pages/System/Star';
+import Compoent403 from '@/pages/Exception/403';
+import Compoent404 from '@/pages/Exception/404';
+import Compoent500 from '@/pages/Exception/500';
 
 const config = [
   {
@@ -22,7 +33,7 @@ const config = [
       {
         path: '/login', // 路由路径
         name: '登录页', // 菜单名称 (不设置,则不展示在菜单栏中）
-        component: lazy(() => import('@/pages/Login')), // 懒加载 路由组件
+        component: LoginComponent, // 懒加载 路由组件
       },
       {
         path: '/',
@@ -33,19 +44,20 @@ const config = [
             path: '/welcome',
             name: '欢迎页',
             icon: <SmileOutlined />,
-            component: lazy(() => import('@/pages/Welcome')),
+            // component: lazy(() => import('@/pages/Welcome')),
+            component: WelcomeComponent,
           },
           {
             path: '/home',
             name: 'home主页',
             icon: <HomeOutlined />,
-            component: lazy(() => import('@/pages/Home')),
+            component: HomeComponent,
           },
           {
             path: '/formDemo',
             name: '表单演示',
             icon: <FormOutlined />,
-            component: lazy(() => import('@/pages/FormDemo')),
+            component: FormDemoComponent,
           },
           {
             path: '/system',
@@ -55,19 +67,19 @@ const config = [
               {
                 path: '/system/groovySet',
                 name: 'Groovy脚本管理',
-                component: lazy(() => import('@/pages/System/GroovySet')),
+                component: GroovySetComponent,
               },
               {
                 path: '/system/user',
                 name: '用户配置',
                 icon: <UserOutlined />,
-                component: lazy(() => import('@/pages/System/User')),
+                component: UserComponent,
               },
               {
                 path: '/system/star',
                 name: '个人中心',
                 icon: <StarOutlined />,
-                component: lazy(() => import('@/pages/System/Star')),
+                component: StarComponent
               },
             ],
           },
@@ -81,20 +93,20 @@ const config = [
                 path: '/exception/403',
                 name: '403',
                 icon: <FrownOutlined />,
-                component: lazy(() => import('@/pages/Exception/403')),
+                component: Compoent403
               },
               {
                 path: '/exception/404',
                 name: '404',
                 exact: true,
                 icon: <FrownOutlined />,
-                component: lazy(() => import('@/pages/Exception/404')),
+                component: Compoent404,
               },
               {
                 path: '/exception/500',
                 name: '500',
                 icon: <FrownOutlined />,
-                component: lazy(() => import('@/pages/Exception/500')),
+                component: Compoent500
               },
             ],
           },
